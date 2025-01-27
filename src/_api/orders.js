@@ -13,8 +13,8 @@ const deleteOrders = async (id) => {
 
 }
 
-const getAllOrders = async (id) => {
-    const req = await axios.get(`/orders/${id}`)
+const getAllOrders = async () => {
+    const req = await axios.get(`/orders`)
     console.log({ data: req.data })
     return req.data
 

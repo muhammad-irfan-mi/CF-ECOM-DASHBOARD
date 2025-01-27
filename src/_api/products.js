@@ -3,7 +3,7 @@ import axios from "./axios.config"
 // API function to create a product
 const createProduct = async (payload) => {
     try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/products`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`, {
             method: "POST",
             body: payload,
         });
