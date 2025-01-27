@@ -34,8 +34,8 @@ const deleteProduct = async (id) => {
 
 }
 
-const getAllProducts = async (id) => {
-    const req = await axios.get(`/products/${id}`)
+const getAllProducts = async () => {
+    const req = await axios.get(`/products`)
     console.log({ data: req.data })
     return req.data
 
