@@ -22,7 +22,7 @@ const createProduct = async (payload) => {
 };
 
 const updateProduct = async (id, payload) => {
-    const req = await axios.post(`/products/${id}`, payload)
+    const req = await axios.put(`/products/${id}`, payload)
     console.log({ data: req.data })
     return req.data
 }
