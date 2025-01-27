@@ -1,0 +1,133 @@
+import React, { useContext, useState } from "react";
+import { IconButton, Tooltip } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { ThemeContext } from "../../context/ContextProvider";
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+
+const Category = () => {
+    const context = useContext(ThemeContext)
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    const initialData = [
+        { id: "#ce8d812a", name: "Baby Doll", image: "image1.png", level: 1, featured: false },
+        { id: "#4c9681ac", name: "Birthday Gift", image: "image2.png", level: 1, featured: true },
+        { id: "#f7b1da64", name: "Cosmetics", image: "image3.png", level: 1, featured: true },
+        { id: "#c8305a8a", name: "Couple Gift", image: "image4.png", level: 1, featured: true },
+        { id: "#e6d2c2e3", name: "Gadgets", image: "image5.png", level: 1, featured: true },
+        { id: "#96c813a8", name: "Men's Fashion", image: "image6.png", level: 1, featured: true },
+        { id: "#ce8d812a", name: "Baby Doll", image: "image1.png", level: 1, featured: false },
+        { id: "#4c9681ac", name: "Birthday Gift", image: "image2.png", level: 1, featured: true },
+        { id: "#f7b1da64", name: "Cosmetics", image: "image3.png", level: 1, featured: true },
+        { id: "#c8305a8a", name: "Couple Gift", image: "image4.png", level: 1, featured: true },
+        { id: "#e6d2c2e3", name: "Gadgets", image: "image5.png", level: 1, featured: true },
+        { id: "#96c813a8", name: "Men's Fashion", image: "image6.png", level: 1, featured: true },
+    ];
+
+    const [data, setData] = useState(initialData);
+
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentData = data.slice(startIndex, startIndex + itemsPerPage);
+
+    const handlePageChange = (page) => {
+        if (page > 0 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const handleToggle = (id) => {
+        const updatedData = data.map((item) =>
+            item.id === id ? { ...item, featured: !item.featured } : item
+        );
+        setData(updatedData);
+    };
+
+    return (
+        <div className='bg-[#edeeef] h-[89vh] overflow-auto py-5'>
+            <div className='w-[97%] mb-6 mx-auto items-center justify-between'>
+
+                <h3 className='text-3xl font-semibold'>Cetagory</h3>
+                <div className='my-5 flex justify-between'>
+                    <div className='flex bg-white px-3 items-center text-gray-400 rounded-md'>
+                        <SearchIcon />
+                        <input type="text" name="" id="" placeholder='Search' className='w-full p-3 border-none outline-none text-black' />
+                    </div>
+                    <button className={`font-semibold text-sm ${context.colors.btn} ${context.colors.btnhover} p-5 py-2 rounded-md `}><AddIcon /> Add Cetagory</button>
+                </div>
+
+                <table className="min-w-full overflow-hidden table-auto border-collapse bg-white border border-gray-300 rounded-lg shadow-md">
+                    <thead className="bg-gray-200">
+                        <tr>
+                            <th className="px-4 py-5 text-sm text-left border-b">ID</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Name</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Image</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Level</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Featured</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentData.map((item) => (
+                            <tr key={item.id} className="hover:bg-gray-50">
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.id}</td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.name}</td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">
+                                    <img src={item.image} alt={item.name} className="w-10 h-10 rounded" />
+                                </td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.level}</td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">
+                                    {/* Toggle Button */}
+                                    <button
+                                        onClick={() => handleToggle(item.id)}
+                                        className={`w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${item.featured ? "bg-blue-500" : "bg-gray-300"
+                                            }`}
+                                    >
+                                        <div
+                                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-300 ${item.featured ? "translate-x-5" : "translate-x-0"
+                                                }`}
+                                        ></div>
+                                    </button>
+                                </td>
+                                <td className="px-4 py-2 border-b flex gap-2 text-gray-600">
+                                    <Tooltip title="Edit">
+                                        <IconButton>
+                                            <EditIcon  className="hover:text-blue-500"/>
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Delete">
+                                        <IconButton>
+                                            <DeleteIcon className="hover:text-red-500" />
+                                        </IconButton>
+                                    </Tooltip>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                {/* Pagination */}
+                <div className="flex justify-center items-center mt-4 gap-2">
+                    <IconButton onClick={() => handlePageChange(currentPage - 1)}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold">
+                        {currentPage}
+                    </div>
+                    <IconButton
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        // disabled={currentPage === totalPages}
+                    >
+                        <ChevronRightIcon />
+                    </IconButton>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Category;

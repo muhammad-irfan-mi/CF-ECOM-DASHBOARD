@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    /* background-color: #08020d; */
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-family: "Roboto", serif;
+    /* font-family: "Open Sans", serif; */
+    /* font-family: "Noto Serif", serif; */
+    /* font-family: "Source Code Pro", serif; */
+    /* font-family: "Montserrat", serif; */
+    /* font-family: "Inter", sans-serif; */
+
+}

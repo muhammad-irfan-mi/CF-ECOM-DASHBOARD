@@ -1,0 +1,91 @@
+import React, { useState } from 'react';
+import { IoSearch } from 'react-icons/io5';
+
+function Irfan() {
+    const [selectedMember, setSelectedMember] = useState(null);
+
+    const members = [
+        { id: 1, name: 'Awais' },
+        { id: 2, name: 'Irfan' },
+        { id: 3, name: 'Ali' },
+        { id: 4, name: 'Hassan' },
+        { id: 5, name: 'Sara' },
+    ];
+
+    return (
+        <div className="flex h-[100vh]">
+            {/* Sidebar */}
+            <div className="w-[25%] bg-slate-200 p-5">
+                <div className="flex rounded-lg p-2 bg-slate-100 w-full justify-between items-center mb-5">
+                    <input type="search" className="outline-0 bg-transparent font-bold w-full" placeholder="Search Member" />
+                    <span className="text-slate-300 ml-2"><IoSearch /></span>
+                </div>
+
+                <div className="space-y-3">
+                    {members.map((member) => (
+                        <button
+                            key={member.id}
+                            className={`flex items-center w-full p-3 rounded-lg ${selectedMember?.id === member.id
+                                ? 'bg-blue-100 text-blue-700'
+                                : 'bg-white text-black'
+                                } hover:bg-blue-50 transition`}
+                            onClick={() => setSelectedMember(member)}
+                        >
+                            {/* Circle with first letter */}
+                            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold mr-3">
+                                {member.name.charAt(0)}
+                            </div>
+                            {member.name}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Content Area */}
+            <div className="w-[75%] p-5">
+                <p className='font-bold text-red-500 capitalize'>note: if the user is inactive and capture the screenshot and then highlighted in red color</p>
+                {selectedMember ? (
+                    <>
+                        <div className='flex items-center mt-5'>
+                            <input placeholder="Select date and time" className='mr-3' type="datetime-local" />
+                            <div className="flex rounded-lg  bg-slate-100 w-[40%] p-1  justify-between items-center">
+                                <span className="text-slate-300 text-2xl ml-2"><IoSearch /></span>
+                                <input type="search" className="outline-0 bg-transparent font-bold w-[100%] px-2 ml-2 h-[30px]" placeholder="Search Member" />
+                            </div>
+                            <div className='text-xl flex border bg-slate-50 p-2 ml-2 rounded-xl w-[10%]'>
+                                <input type="checkbox" name="" id="" />
+                                <p>Select all</p>
+                            </div>
+                            <div className=' flex  justify-between ml-2 w-[150px]'>
+                                <button className='mx-1 bg-slate-50 p-2 font-bold rounded-lg border' type="button">export</button>
+                                <button className='mx-1 bg-slate-50 p-2 font-bold rounded-lg border' type="button">delete</button>
+                            </div>
+                        </div>
+                        <div className=' flex justify-end items-center w-[80%] mt-5'>
+                            <label class="inline-flex items-center cursor-pointer mx-4 w-fit">
+                                <p className='capitalize font-bold mx-3'>idle screenshort</p>
+                                <input type="checkbox" value="" class="sr-only peer"/>
+                                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                   
+                            </label>
+
+                            <button type="button" className='p-3 bg-slate-100 rounded-lg text-blue-600 font-bold'> Newest &#8595;</button>
+
+                        </div>
+
+                        <div className='flex cursor-pointer h-[40vh] border rounded-lg justify-center items-center'>
+                            <p className='capitalize font-bold'>yet to capture screenshot</p>
+                        </div>
+                    </>
+                ) : (
+                    <div>
+                        <h1 className="text-2xl font-bold">Select a Member</h1>
+            <p className="mt-3 text-lg">Click on a name from the sidebar to view details.</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default Irfan;
