@@ -49,7 +49,7 @@ function Sidebar() {
                             </Link>
                         </div>
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'time-sheet'}>
+                            <Link to={'product-review'}>
                                 <WatchLaterIcon fontSize="small" />
                                 <span className="text-lg ml-3">Product Review</span>
                             </Link>
@@ -64,13 +64,13 @@ function Sidebar() {
                     </h2>
                     <div className="flex flex-col gap-3">
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/cetagory'}>
+                            <Link to={'cetagory'}>
                                 <CameraAlt fontSize="small" />
                                 <span className="text-lg ml-3">Cetagory List</span>
                             </Link>
                         </div>
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/billing-page'}>
+                            <Link to={'create-cetagory'}>
                                 <VideoLibrary fontSize="small" />
                                 <span className="text-lg ml-3">Create Cetagories</span>
                             </Link>
@@ -85,13 +85,13 @@ function Sidebar() {
                     </h2>
                     <div className="flex flex-col gap-3">
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/screenshot'}>
+                            <Link>
                                 <CameraAlt fontSize="small" />
                                 <span className="text-lg ml-3">Brand List</span>
                             </Link>
                         </div>
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/billing-page'}>
+                            <Link>
                                 <VideoLibrary fontSize="small" />
                                 <span className="text-lg ml-3">Create Brand</span>
                             </Link>
@@ -127,13 +127,13 @@ function Sidebar() {
                     </h2>
                     <div className="flex flex-col gap-3">
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/screenshot'}>
+                            <Link>
                                 <CameraAlt fontSize="small" />
                                 <span className="text-lg ml-3">Refunds Request</span>
                             </Link>
                         </div>
                         <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                            <Link to={'/billing-page'}>
+                            <Link>
                                 <VideoLibrary fontSize="small" />
                                 <span className="text-lg ml-3">Refunds Setting</span>
                             </Link>
@@ -143,19 +143,19 @@ function Sidebar() {
 
 
                 <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                    <Link to={'/screenshot'}>
+                    <Link>
                         <CameraAlt fontSize="small" />
                         <span className="text-lg ml-3">Reviews</span>
                     </Link>
                 </div>
                 <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                    <Link to={'/screenshot'}>
+                    <Link>
                         <CameraAlt fontSize="small" />
                         <span className="text-lg ml-3">Account Setting</span>
                     </Link>
                 </div>
                 <div className={`flex items-center gap-3 cursor-pointer ${context.mode == 'dark' ? 'hover:text-white' : 'hover:text-black'}`}>
-                    <Link to={'/screenshot'}>
+                    <Link>
                         <CameraAlt fontSize="small" />
                         <span className="text-lg ml-3">Log Out</span>
                     </Link>

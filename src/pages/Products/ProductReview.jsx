@@ -8,24 +8,24 @@ import { ThemeContext } from "../../context/ContextProvider";
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 
-const Category = () => {
+const ProductReview = () => {
     const context = useContext(ThemeContext)
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
     const initialData = [
-        { id: "#ce8d812a", name: "Baby Doll", image: "image1.png", level: 1 },
-        { id: "#4c9681ac", name: "Birthday Gift", image: "image2.png", level: 1 },
-        { id: "#f7b1da64", name: "Cosmetics", image: "image3.png", level: 1  },
-        { id: "#c8305a8a", name: "Couple Gift", image: "image4.png", level: 1  },
-        { id: "#e6d2c2e3", name: "Gadgets", image: "image5.png", level: 1},
-        { id: "#96c813a8", name: "Men's Fashion", image: "image6.png", level: 1},
-        { id: "#ce8d812a", name: "Baby Doll", image: "image1.png", level: 1},
-        { id: "#4c9681ac", name: "Birthday Gift", image: "image2.png", level: 1},
-        { id: "#f7b1da64", name: "Cosmetics", image: "image3.png", level: 1},
-        { id: "#c8305a8a", name: "Couple Gift", image: "image4.png", level: 1},
-        { id: "#e6d2c2e3", name: "Gadgets", image: "image5.png", level: 1},
-        { id: "#96c813a8", name: "Men's Fashion", image: "image6.png", level: 1},
+        { name: "Baby Doll", image: "image1.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Birthday Gift", image: "image2.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Cosmetics", image: "image3.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Couple Gift", image: "image4.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Gadgets", image: "image5.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Men's Fashion", image: "image6.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Baby Doll", image: "image1.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Birthday Gift", image: "image2.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Cosmetics", image: "image3.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Couple Gift", image: "image4.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Gadgets", image: "image5.png", Customer:'M Irfan', comment:'Hello this is very good product' },
+        { name: "Men's Fashion", image: "image6.png", Customer:'M Irfan', comment:'Hello this is very good product' },
     ];
 
     const [data, setData] = useState(initialData);
@@ -56,27 +56,26 @@ const Category = () => {
                 <table className="min-w-full overflow-hidden table-auto border-collapse bg-white border border-gray-300 rounded-lg shadow-md">
                     <thead className="bg-gray-200">
                         <tr>
-                            <th className="px-4 py-5 text-sm text-left border-b">ID</th>
-                            <th className="px-4 py-5 text-sm text-left border-b">Name</th>
-                            <th className="px-4 py-5 text-sm text-left border-b">Image</th>
-                            <th className="px-4 py-5 text-sm text-left border-b">Level</th>
-                            <th className="px-4 py-5 text-sm text-center border-b">Action</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Product</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Customer</th>
+                            <th className="px-4 py-5 text-sm text-left border-b">Comment</th>
+                            <th className="px-4 py-5 text-sm border-b text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentData.map((item) => (
                             <tr key={item.id} className="hover:bg-gray-50">
-                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.id}</td>
-                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.name}</td>
-                                <td className="px-4 py-2 text-sm text-gray-600 border-b">
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b flex gap-3">
                                     <img src={item.image} alt={item.name} className="w-10 h-10 rounded" />
+                                    <h1>{item.name}</h1>
                                 </td>
-                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.level}</td>
-                              
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.Customer}</td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.comment}</td>
+
                                 <td className="px-4 py-2 border-b flex justify-center gap-2 text-gray-600">
                                     <Tooltip title="Edit">
                                         <IconButton>
-                                            <EditIcon  className="hover:text-blue-500"/>
+                                            <EditIcon className="hover:text-blue-500" />
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip title="Delete">
@@ -100,7 +99,7 @@ const Category = () => {
                     </div>
                     <IconButton
                         onClick={() => handlePageChange(currentPage + 1)}
-                        // disabled={currentPage === totalPages}
+                    // disabled={currentPage === totalPages}
                     >
                         <ChevronRightIcon />
                     </IconButton>
@@ -110,4 +109,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default ProductReview;

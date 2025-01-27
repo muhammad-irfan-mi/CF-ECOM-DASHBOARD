@@ -130,7 +130,7 @@ const Products = () => {
 
             <div className='bg-[#edeeef] h-[89vh] overflow-auto py-5'>
                 <div className='w-[97%] mb-6 mx-auto items-center justify-between'>
-                    <h3 className='text-3xl font-semibold'>Order</h3>
+                    <h3 className='text-3xl font-semibold'>Product</h3>
                     <div className='my-5 flex justify-between'>
                         <div className='flex bg-white px-3 items-center text-gray-400 rounded-md'>
                             <SearchIcon />
