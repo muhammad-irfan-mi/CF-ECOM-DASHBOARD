@@ -1,14 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ThemeContext } from '../../context/ContextProvider';
+import { getAllOrders } from '../../_api/orders';
 
 function Order() {
     const context = useContext(ThemeContext)
+    const [orders, setOrders] = useState([])
+    useEffect(() => {
+        (async () => {
+            const o = await getAllOrders()
+            console.log({ o })
+            setOrders(o)
+        })()
+    }, [])
 
-    const orders = [
+
+    const _orders = [
         {
             qty: 3,
             purchaseDate: "10 Nov 2022",
@@ -79,7 +89,7 @@ function Order() {
                         <thead >
                             <tr className="bg-gray-200">
                                 <th className="px-4 py-8 border border-b-gray-200">Order ID</th>
-                                <th className="px-4 py-8 border border-b-gray-200">Qty</th>
+                                {/* <th className="px-4 py-8 border border-b-gray-200">Qty</th> */}
                                 <th className="px-4 py-8 border border-b-gray-200">Purchase Date</th>
                                 <th className="px-4 py-8 border border-b-gray-200">Billing Address</th>
                                 <th className="px-4 py-8 border border-b-gray-200">Amount</th>
@@ -88,13 +98,13 @@ function Order() {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map((order, index) => (
+                            {orders && orders.map((order, index) => (
                                 <tr key={index} className="hover:bg-gray-50 border">
-                                    <td className="px-4 py-5">ID: {index + 1}</td>
-                                    <td className="px-4 py-5">{order.qty}</td>
-                                    <td className="px-4 py-5">{order.purchaseDate}</td>
-                                    <td className="px-4 py-5">{order.billingAddress}</td>
-                                    <td className="px-4 py-5">{order.amount}</td>
+                                    <td className="px-4 py-5 text-[12px]">{order.id.slice(0, 8)}...</td>
+                                    {/* <td className="px-4 py-5">{order.qty}</td> */}
+                                    <td className="px-4 py-5">{order.phoneNumber}</td>
+                                    <td className="px-4 py-5">{order.address} ,{order.city}, {order.country}</td>
+                                    <td className="px-4 py-5">Rs.{order.totalPrice}</td>
                                     <td className="px-4 py-5">
                                         <span
                                             className={`px-2 py-1 rounded-full text-sm ${getStatusClass(order.status)}`}
