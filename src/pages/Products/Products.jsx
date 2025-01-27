@@ -1,14 +1,15 @@
 import { Delete, Edit, Visibility } from '@mui/icons-material'
 import { Fab } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import { ThemeContext } from '../../context/ContextProvider';
+import { deleteProduct, getAllProducts } from '../../_api/products';
 
 
 
 
-const product = [
+const _product = [
     {
         name: "Blue Premium T-shirt",
         picUrl: "https://dictionary.cambridge.org/images/thumb/Tshirt_noun_001_18267.jpg?version=6.0.43",
@@ -123,8 +124,22 @@ const product = [
     },
 ]
 
+
+
 const Products = () => {
+    const [product, setProducts] = useState([])
+
+    const fetchAllProducts = async () => {
+        console.log("Fetching all products")
+        const p = await getAllProducts()
+        console.log({ p })
+        setProducts(p)
+    }
+    useEffect(() => {
+        fetchAllProducts()
+    }, [])
     const context = useContext(ThemeContext)
+
     return (
         <>
 
@@ -137,10 +152,10 @@ const Products = () => {
                             <input type="text" name="" id="" placeholder='Search' className='w-full p-3 border-none outline-none text-black' />
                         </div>
                         <button className={`font-semibold ${context.colors.btn} ${context.colors.btnhover} p-3 py-2 rounded-md `}><AddIcon /> Create Product</button>
-                        </div>
+                    </div>
                 </div>
                 <div className='w-[97%] mx-auto'>
-                    {product.map((item, i) => {
+                    {product && product.map((item, i) => {
                         return <div key={i} className='flex items-center justify-between mt-1  bg-white rounded-md pl-5'>
                             <div className='flex items-center w-48'>
                                 <img src={item.picUrl} alt="" className='w-16' />
@@ -159,9 +174,10 @@ const Products = () => {
                                     className='name'
                                     color="info"
                                     aria-label="add">
-                                    <Edit />
+                                    <Edit />        
                                 </Fab>
                                 <Fab
+                                    onClick={async () => await deleteProduct(item.id)}
                                     size='small'
                                     className='name'
                                     color="error"
