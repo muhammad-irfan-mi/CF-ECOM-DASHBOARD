@@ -7,10 +7,12 @@ import Overview from './pages/overview/Overview'
 import Products from './pages/Products/Products'
 import CreateProduct from './pages/Products/CreateProduct'
 import Order from './pages/Order/Order'
+import Brand from './pages/barnd/Brand'
 import Cetagory from './pages/cetagory/Category'
 import OrderDetail from './pages/Order/OrderDetail'
 import ProductReview from './pages/Products/ProductReview'
 import CreateCetagory from './pages/cetagory/CreateCetagory'
+import CreateBrand from './pages/barnd/CreateBrand'
 
 function App() {
   const location = useLocation();
@@ -36,6 +38,8 @@ function App() {
             <Route path='/order-detail' element={<OrderDetail />} />
             <Route path='/cetagory' element={<Cetagory />} />
             <Route path='/create-cetagory' element={<CreateCetagory />} />
+            <Route path='/brand' element={<Brand />} />
+            <Route path='/create-brand' element={<CreateBrand />} />
           </Routes>
         </div>
 

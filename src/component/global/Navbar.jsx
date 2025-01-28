@@ -36,7 +36,7 @@ function Navbar() {
 
     return (
         <>
-            <div className={`w-full h-[67px] flex justify-between items-center shadow-lg `}>
+            <div className={`w-full h-[67px] flex justify-between items-center shadow-lg ${context.colors.boxbg}`}>
                 {/* {context.mode == 'dark' ? <img src={logo} alt="" className='w-20 invert filter' /> :
                     <img src={logo} alt="" className='w-20' />} */}
                 <div className={`flex items-center justify-end gap-7 w-full px-5`}>

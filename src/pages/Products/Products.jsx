@@ -147,7 +147,7 @@ const Products = () => {
                 <div className='w-[97%] mb-6 mx-auto items-center justify-between'>
                     <h3 className='text-3xl font-semibold'>Product</h3>
                     <div className='my-5 flex justify-between'>
-                        <div className='flex bg-white px-3 items-center text-gray-400 rounded-md'>
+                        <div className={`flex px-3 items-center text-gray-400 rounded-md ${context.colors.boxbg}`}>
                             <SearchIcon />
                             <input type="text" name="" id="" placeholder='Search' className='w-full p-3 border-none outline-none text-black' />
                         </div>
@@ -156,7 +156,7 @@ const Products = () => {
                 </div>
                 <div className='w-[97%] mx-auto'>
                     {product && product.map((item, i) => {
-                        return <div key={i} className='flex items-center justify-between mt-1  bg-white rounded-md pl-5'>
+                        return <div key={i} className={`flex items-center justify-between mt-1 rounded-md pl-5 ${context.colors.boxbg}`}>
                             <div className='flex items-center w-48'>
                                 <img src={item.picUrl} alt="" className='w-16' />
                                 <h3 className='text-lg font-semibold'>{item.name}</h3>

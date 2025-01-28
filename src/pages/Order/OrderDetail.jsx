@@ -46,7 +46,7 @@ function OrderDetail() {
 
             <div className='w-[97%] mx-auto'>
                 <h3 className='text-3xl font-semibold'>Order List</h3>
-                <div className='border p-5 my-6 bg-white rounded-md'>
+                <div className={`border p-5 my-6 rounded-md ${context.colors.boxbg}`}>
                     <div className='text-gray-500 flex text-sm'>
                         <h3>Order ID: <h2 className='text-black inline'>{products.orderId}</h2></h3>
                         <h3 className='ml-14'>Placed on: <h2 className='text-black inline'>{products.placedOn}</h2></h3>
@@ -77,7 +77,7 @@ function OrderDetail() {
                     })}
                 </div>
                 <div className='flex gap-8'>
-                    <div className='border w-[50%] p-5 bg-white rounded-md'>
+                    <div className={`border w-[50%] p-5  rounded-md ${context.colors.boxbg}`}>
                         <form action="">
                             <div>
                                 <label htmlFor="">Shipping Address</label>
@@ -89,7 +89,7 @@ function OrderDetail() {
                             </div>
                         </form>
                     </div>
-                    <div className='border w-[50%] p-5 h-[20%] bg-white rounded-md'>
+                    <div className={`border w-[50%] p-5 h-[20%] rounded-md ${context.colors.boxbg}`}>
                         <h3 className='text-md text-gray-700 font-medium'>Total Summary</h3>
                         <div className='flex justify-between items-center my-5 text-sm text-gray-500'>
                             <h3 className=''>Subtotal</h3>

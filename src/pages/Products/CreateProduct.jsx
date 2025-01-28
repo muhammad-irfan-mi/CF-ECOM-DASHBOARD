@@ -1,10 +1,11 @@
-import { Button, TextField, Card, CardContent, Typography, Grid, Box } from "@mui/material";
-import { useState } from "react";
-import { createProduct } from '../../_api/products'
+import { useContext, useState } from "react";
+import { createProduct } from "../../_api/products";
+import { ThemeContext } from "../../context/ContextProvider";
 
 const CreateProduct = () => {
   const [state, setState] = useState({});
   const [images, setImages] = useState([]);
+  const context = useContext(ThemeContext);
 
   const handleFileChange = (e) => {
     setImages(Array.from(e.target.files));
@@ -48,113 +49,117 @@ const CreateProduct = () => {
   };
 
   return (
-    <Box className="bg-[#edeeef] h-[89vh] flex justify-center items-center">
-      <Card className="w-[35rem] shadow-lg rounded-lg">
-        <CardContent>
-          <Typography variant="h5" className="text-center mb-6 font-bold text-gray-700">
-            Create New Product
-          </Typography>
+    <div className="bg-[#edeeef] h-[89vh] overflow-auto p-10 flex justify-center items-center">
+      <div
+        className={`w-[35rem] shadow-lg rounded-lg ${context.colors.boxbg} p-6 mt-14`}
+      >
+        <h5 className="text-center mb-6 font-bold text-gray-700 text-lg">
+          Create New Product
+        </h5>
 
-          <Grid container spacing={2}>
-            {/* Name */}
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="name"
-                variant="outlined"
-                label="Name"
-                placeholder="Men's watch"
-              />
-            </Grid>
+        <div className="grid grid-cols-1 gap-4">
+          {/* Name */}
+          <div>
+            <input
+              type="text"
+              name="name"
+              onChange={__onchange__}
+              placeholder="Men's watch"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
 
-            {/* Description */}
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="desc"
-                variant="outlined"
-                label="Description"
-                placeholder="Description about the product"
-                multiline
-                rows={3}
-              />
-            </Grid>
+          {/* Description */}
+          <div>
+            <textarea
+              name="desc"
+              onChange={__onchange__}
+              placeholder="Description about the product"
+              rows="3"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            ></textarea>
+          </div>
 
-            {/* Price and Colour */}
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="price"
-                type="number"
-                variant="outlined"
-                label="Price"
-                placeholder="4000"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="colour"
-                variant="outlined"
-                label="Colour"
-                placeholder="red,blue,green"
-              />
-            </Grid>
+          {/* Price and Colour */}
+          <div className="grid grid-cols-2 gap-4">
+            <input
+              type="number"
+              name="price"
+              onChange={__onchange__}
+              placeholder="4000"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            <input
+              type="text"
+              name="colour"
+              onChange={__onchange__}
+              placeholder="red,blue,green"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
 
-            {/* Size and Tags */}
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="size"
-                variant="outlined"
-                label="Size"
-                placeholder="S,M,L"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                onChange={__onchange__}
-                name="tags"
-                variant="outlined"
-                label="Tags"
-                placeholder="casual,sports"
-              />
-            </Grid>
+          {/* Size and Tags */}
+          <div className="flex gap-4">
+            <input
+              type="text"
+              name="size"
+              onChange={__onchange__}
+              placeholder="S,M,L"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+            <input
+              type="text"
+              name="tags"
+              onChange={__onchange__}
+              placeholder="casual,sports"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+          {/* Size and Tags */}
+          <div className="flex gap-4">
+            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+              <option value="">select category</option>
+              <option value="category 1">category 1</option>
+              <option value="category 2">category 2</option>
+              <option value="category 3">category 3</option>
+              <option value="category 4">category 4</option>
+              <option value="category 5">category 5</option>
+            </select>
+            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+              <option value="">Select Brand</option>
+              <option value="Brand 1">Brand 1</option>
+              <option value="Brand 2">Brand 2</option>
+              <option value="Brand 3">Brand 3</option>
+              <option value="Brand 4">Brand 4</option>
+              <option value="Brand 5">Brand 5</option>
+            </select>
+          </div>
 
-            {/* Image Upload */}
-            <Grid item xs={12}>
-              <Button
-                variant="outlined"
-                component="label"
-                fullWidth
-                className="text-gray-600 border-gray-400"
-              >
-                Upload Images
-                <input type="file" multiple hidden onChange={handleFileChange} />
-              </Button>
-            </Grid>
+          {/* Image Upload */}
+          <div>
+            <label className="w-full flex justify-center items-center border border-gray-400 rounded px-3 py-2 text-gray-600 cursor-pointer">
+              Upload Images
+              <input
+                type="file"
+                multiple
+                hidden
+                onChange={handleFileChange}
+              />
+            </label>
+          </div>
 
-            {/* Submit Button */}
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                fullWidth
-                onClick={__submit__}
-                className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-              >
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </Box>
+          {/* Submit Button */}
+          <div>
+            <button
+              onClick={__submit__}
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

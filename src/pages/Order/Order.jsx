@@ -18,43 +18,6 @@ function Order() {
     }, [])
 
 
-    const _orders = [
-        {
-            qty: 3,
-            purchaseDate: "10 Nov 2022",
-            billingAddress: "Kelly Williams 777 Brockton Avenue, Abington MA 2351",
-            amount: "$350.00",
-            status: "Pending",
-        },
-        {
-            qty: 3,
-            purchaseDate: "10 Nov 2022",
-            billingAddress: "Kelly Williams 777 Brockton Avenue, Abington MA 2351",
-            amount: "$350.00",
-            status: "Processing",
-        },
-        {
-            qty: 3,
-            purchaseDate: "10 Nov 2022",
-            billingAddress: "Kelly Williams 777 Brockton Avenue, Abington MA 2351",
-            amount: "$350.00",
-            status: "Delivered",
-        },
-        {
-            qty: 3,
-            purchaseDate: "10 Nov 2022",
-            billingAddress: "Kelly Williams 777 Brockton Avenue, Abington MA 2351",
-            amount: "$350.00",
-            status: "Cancelled",
-        },
-        {
-            qty: 3,
-            purchaseDate: "10 Nov 2022",
-            billingAddress: "Kelly Williams 777 Brockton Avenue, Abington MA 2351",
-            amount: "$350.00",
-            status: "Delivered",
-        },
-    ];
 
     const getStatusClass = (status) => {
         switch (status) {
@@ -76,7 +39,7 @@ function Order() {
 
                 <h3 className='text-3xl font-semibold'>Order</h3>
                 <div className='my-5 flex justify-between'>
-                    <div className='flex bg-white px-3 items-center text-gray-400 rounded-md'>
+                    <div className={`flex px-3 items-center text-gray-400 rounded-md ${context.colors.boxbg}`}>
                         <SearchIcon />
                         <input type="text" name="" id="" placeholder='Search' className='w-full p-3 border-none outline-none text-black' />
                     </div>
@@ -84,13 +47,13 @@ function Order() {
                 </div>
 
                 {/* Table Section  */}
-                <div className="overflow-x-auto rounded-md bg-white">
-                    <table className="min-w-full border-collapse border border-gray-200 text-left">
+                <div className={`overflow-x-auto rounded-md ${context.colors.boxbg}`}>
+                    <table className="min-w-full border-collapse border border-gray-300 text-left">
                         <thead >
-                            <tr className="bg-gray-200">
+                            <tr className="bg-gray-300">
                                 <th className="px-4 py-8 border border-b-gray-200">Order ID</th>
                                 {/* <th className="px-4 py-8 border border-b-gray-200">Qty</th> */}
-                                <th className="px-4 py-8 border border-b-gray-200">Purchase Date</th>
+                                <th className="px-4 py-8 border border-b-gray-200">Phone No:</th>
                                 <th className="px-4 py-8 border border-b-gray-200">Billing Address</th>
                                 <th className="px-4 py-8 border border-b-gray-200">Amount</th>
                                 <th className="px-4 py-8 border border-b-gray-200">Status</th>

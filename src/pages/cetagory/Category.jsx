@@ -42,19 +42,19 @@ const Category = () => {
 
     return (
         <div className='bg-[#edeeef] h-[89vh] overflow-auto py-5'>
-            <div className='w-[97%] mb-6 mx-auto items-center justify-between'>
+            <div className={`w-[97%] mb-6 mx-auto items-center justify-between`}>
 
                 <h3 className='text-3xl font-semibold'>Cetagory</h3>
                 <div className='my-5 flex justify-between'>
-                    <div className='flex bg-white px-3 items-center text-gray-400 rounded-md'>
+                    <div className={`flex  px-3 items-center text-gray-400 rounded-md ${context.colors.boxbg}`}>
                         <SearchIcon />
                         <input type="text" name="" id="" placeholder='Search' className='w-full p-3 border-none outline-none text-black' />
                     </div>
                     <button className={`font-semibold text-sm ${context.colors.btn} ${context.colors.btnhover} p-5 py-2 rounded-md `}><AddIcon /> Add Cetagory</button>
                 </div>
 
-                <table className="min-w-full overflow-hidden table-auto border-collapse bg-white border border-gray-300 rounded-lg shadow-md">
-                    <thead className="bg-gray-200">
+                <table className={`min-w-full overflow-hidden table-auto border-collapse border border-gray-300 rounded-lg shadow-md ${context.colors.boxbg}`}>
+                    <thead className="bg-gray-300">
                         <tr>
                             <th className="px-4 py-5 text-sm text-left border-b">ID</th>
                             <th className="px-4 py-5 text-sm text-left border-b">Name</th>

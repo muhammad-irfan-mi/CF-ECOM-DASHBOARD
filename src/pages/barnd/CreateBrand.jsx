@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ContextProvider";
 
-const CreateCetagory = () => {
+const CreateBrand = () => {
     const context = useContext(ThemeContext)
     const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -20,19 +20,12 @@ const CreateCetagory = () => {
                 <h2 className="text-xl font-semibold mx-5 mb-8">Create Category</h2>
             <div className={`w-[97%] p-10 rounded-lg mb-6 mx-auto items-center justify-between ${context.colors.boxbg}`}>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 gap-4 mb-4">
                     <input
                         type="text"
                         placeholder="Name"
-                        className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="border  border-gray-300 rounded-lg p-3  focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    <select
-                        className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Select Parent Category</option>
-                        <option value="category1">Category 1</option>
-                        <option value="category2">Category 2</option>
-                    </select>
                 </div>
                 <div
                     className="border border-dashed bg-[#f6f9fc] rounded-lg p-6 flex flex-col items-center justify-center mb-4 h-72"
@@ -86,4 +79,4 @@ const CreateCetagory = () => {
     );
 };
 
-export default CreateCetagory;
+export default CreateBrand;

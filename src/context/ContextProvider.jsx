@@ -7,7 +7,10 @@ const [user, setUser] = useState([])
 
 const colors = {
   bgcolor: 'bg-[#fbfbfb]',
-  boxbg: mode === 'dark' ? 'bg-[#2b3445]' : 'bg-[#f4f4f5]',
+  sidebarBg:'bg-[#2b3445]',
+  boxbg:'bg-[#ffffff]',
+  boxbtn:"bg-[#323b4c]",
+  boxbtnText:"text-[#3255d5]",
   btn: 'bg-[#4e97fd] text-gray-100',
   btnhover:'hover:bg-[#2756b6] hover:text-white',
   // btntext1: "",
