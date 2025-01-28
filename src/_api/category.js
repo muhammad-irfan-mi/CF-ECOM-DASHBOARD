@@ -29,7 +29,7 @@ const deleteCategory = async (id) => {
 }
 
 const getAllCategorys = async () => {
-    const req = await axios.get(`/categorys`)
+    const req = await axios.get(`/category`)
     console.log({ data: req.data })
     return req.data
 
