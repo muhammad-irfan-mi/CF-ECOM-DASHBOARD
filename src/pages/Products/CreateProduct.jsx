@@ -23,12 +23,15 @@ const CreateProduct = () => {
     if (typeof state.tags === "string") state.tags = state.tags.split(",");
     if (typeof state.price === "string") state.price = +state.price;
 
+    console.log({state})
     formData.append("name", String(state.name));
     formData.append("price", String(state.price));
     formData.append("desc", String(state.desc));
     formData.append("size", JSON.stringify(state.size));
     formData.append("colour", JSON.stringify(state.colour));
     formData.append("tags", JSON.stringify(state.tags));
+    formData.append("catagoryId", JSON.stringify(state.categoryId));
+    formData.append("brandId", JSON.stringify(state.brandId));
 
     if (images) {
       images.forEach((image) => {
@@ -40,7 +43,6 @@ const CreateProduct = () => {
 
     if (response) {
       alert("Product created successfully!");
-      setState({});
       setImages([]);
     }
   };
@@ -58,7 +60,6 @@ const CreateProduct = () => {
     const b = await getAllBrands()
     const c = await getAllCategorys()
     setBrand(b)
-    console.log({ b, c })
     setCategory(c)
 
   }
@@ -137,7 +138,7 @@ const CreateProduct = () => {
           <div className="flex gap-4">
             <select
               onChange={__onchange__}
-              name="category" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+              name="categoryId" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">select category</option>
               {category && category.map((e, i) => (
                 <option key={i} value={e.id}>{e.name}</option>))}
@@ -145,7 +146,7 @@ const CreateProduct = () => {
             </select>
             <select
               onChange={__onchange__}
-              name="brand" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+              name="brandId" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">Select Brand</option>
               {brand && brand.map((e, i) => (
                 <option key={i} value={e.id}>{e.name}</option>))}

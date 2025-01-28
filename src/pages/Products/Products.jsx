@@ -161,10 +161,10 @@ const Products = () => {
                                 <img src={item.picUrl} alt="" className='w-16' />
                                 <h3 className='text-lg font-semibold'>{item.name}</h3>
                             </div>
-                            <h3 className='text-lg font-semibold'>{item.category}</h3>
+                            <h3 className='text-lg font-semibold'>{item?.catagory?.name}</h3>
                             <div>
                                 <h3 className='text-lg font-semibold'>
-                                    <img src={item.brandUrl} alt="" className='w-24' />
+                                    <img src={item?.brand?.picUrl} alt="" className='w-24' />
                                 </h3>
                             </div>
                             <h3 className='text-lg font-semibold'>{item.price}</h3>
@@ -174,7 +174,7 @@ const Products = () => {
                                     className='name'
                                     color="info"
                                     aria-label="add">
-                                    <Edit />        
+                                    <Edit />
                                 </Fab>
                                 <Fab
                                     onClick={async () => await deleteProduct(item.id)}
