@@ -1,10 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createProduct } from "../../_api/products";
 import { ThemeContext } from "../../context/ContextProvider";
+import { getAllBrands } from "../../_api/brand";
+import { getAllCategorys } from "../../_api/category";
 
 const CreateProduct = () => {
   const [state, setState] = useState({});
   const [images, setImages] = useState([]);
+  const [category, setCategory] = useState([])
+  const [brand, setBrand] = useState([])
   const context = useContext(ThemeContext);
 
   const handleFileChange = (e) => {
@@ -42,12 +46,26 @@ const CreateProduct = () => {
   };
 
   const __onchange__ = (e) => {
+    console.log({ state })
     setState((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
+
+  const fetchAllData = async () => {
+    const b = await getAllBrands()
+    const c = await getAllCategorys()
+    setBrand(b)
+    console.log({ b, c })
+    setCategory(c)
+
+  }
+
+  useEffect(() => {
+    fetchAllData()
+  }, [])
   return (
     <div className="bg-[#edeeef] h-[89vh] overflow-auto p-10 flex justify-center items-center">
       <div
@@ -117,21 +135,20 @@ const CreateProduct = () => {
           </div>
           {/* Size and Tags */}
           <div className="flex gap-4">
-            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+            <select
+              onChange={__onchange__}
+              name="category" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">select category</option>
-              <option value="category 1">category 1</option>
-              <option value="category 2">category 2</option>
-              <option value="category 3">category 3</option>
-              <option value="category 4">category 4</option>
-              <option value="category 5">category 5</option>
+              {category && category.map((e, i) => (
+                <option key={i} value={e.id}>{e.name}</option>))}
+
             </select>
-            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+            <select
+              onChange={__onchange__}
+              name="brand" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">Select Brand</option>
-              <option value="Brand 1">Brand 1</option>
-              <option value="Brand 2">Brand 2</option>
-              <option value="Brand 3">Brand 3</option>
-              <option value="Brand 4">Brand 4</option>
-              <option value="Brand 5">Brand 5</option>
+              {brand && brand.map((e, i) => (
+                <option key={i} value={e.id}>{e.name}</option>))}
             </select>
           </div>
 
