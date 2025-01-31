@@ -7,7 +7,10 @@ import { getAllCategorys } from "../../_api/category";
 const CreateProduct = () => {
   const [state, setState] = useState({});
   const [images, setImages] = useState([]);
+  const [category, setCategory] = useState([])
+  const [brand, setBrand] = useState([])
   const context = useContext(ThemeContext);
+  const [isOnSale, setIsOnSale] = useState(false);
 
   const handleFileChange = (e) => {
     setImages(Array.from(e.target.files));
@@ -16,7 +19,9 @@ const CreateProduct = () => {
   const handleOffer = () => {
     setIsOnSale(!isOnSale)
   }
-  
+  const dev__submit__ = () => {
+    console.log({ ...state, salePrice: discountCalculator(+state.discountPercent, +state.price) })
+  }
   const __submit__ = async () => {
     const formData = new FormData();
 
@@ -25,13 +30,18 @@ const CreateProduct = () => {
     if (typeof state.tags === "string") state.tags = state.tags.split(",");
     if (typeof state.price === "string") state.price = +state.price;
 
-    console.log({state})
+    console.log({ state })
     formData.append("name", String(state.name));
     formData.append("price", String(state.price));
     formData.append("desc", String(state.desc));
     formData.append("size", JSON.stringify(state.size));
     formData.append("colour", JSON.stringify(state.colour));
     formData.append("tags", JSON.stringify(state.tags));
+    formData.append("catagoryId", JSON.stringify(state.categoryId));
+    formData.append("brandId", JSON.stringify(state.brandId));
+    formData.append("isOnSale", JSON.stringify(isOnSale));
+    formData.append("discountPercent", JSON.stringify(state.discountPercent));
+    formData.append("salePrice", JSON.stringify(discountCalculator(+state.discountPercent, +state.price)));
 
     if (images) {
       images.forEach((image) => {
@@ -56,7 +66,7 @@ const CreateProduct = () => {
   };
 
 
-
+  const discountCalculator = (percent, originalPrice) => originalPrice - Math.floor((percent / 100) * originalPrice);
 
   const fetchAllData = async () => {
     const b = await getAllBrands()
@@ -85,7 +95,7 @@ const CreateProduct = () => {
               type="text"
               name="name"
               onChange={__onchange__}
-              placeholder="Men's watch"
+              placeholder="Product Name"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
@@ -95,7 +105,7 @@ const CreateProduct = () => {
             <textarea
               name="desc"
               onChange={__onchange__}
-              placeholder="Description about the product"
+              placeholder="Description"
               rows="3"
               className="w-full border border-gray-300 rounded px-3 py-2"
             ></textarea>
@@ -107,14 +117,14 @@ const CreateProduct = () => {
               type="number"
               name="price"
               onChange={__onchange__}
-              placeholder="4000"
+              placeholder="price"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             <input
               type="text"
               name="colour"
               onChange={__onchange__}
-              placeholder="red,blue,green"
+              placeholder="Colour"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
@@ -125,36 +135,38 @@ const CreateProduct = () => {
               type="text"
               name="size"
               onChange={__onchange__}
-              placeholder="S,M,L"
+              placeholder="Size"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
             <input
               type="text"
               name="tags"
               onChange={__onchange__}
-              placeholder="casual,sports"
+              placeholder="Tags"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
+
+
           {/* Offers */}
           <div className="flex gap-4">
             <input
               type="checkBox"
               name="isOnSale"
               onChange={handleOffer}
-              placeholder="S,M,L"
+              placeholder="Is On Sale"
               className="w-8 border border-gray-300 rounded "
             />
             <input
               type="number"
-              name="salePrice"
+              name="discountPercent"
               onChange={__onchange__}
-              placeholder="Add offer"
+              placeholder="Discount Percent"
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
 
-          {/* Size and Tags */}
+          {/* cat and brands */}
           <div className="flex gap-4">
             <select
               onChange={__onchange__}
@@ -164,6 +176,8 @@ const CreateProduct = () => {
                 <option key={i} value={e.id}>{e.name}</option>))}
 
             </select>
+
+
             <select
               onChange={__onchange__}
               name="brandId" id="" className="w-full border border-gray-300 rounded px-3 py-2">
@@ -195,6 +209,8 @@ const CreateProduct = () => {
               Submit
             </button>
           </div>
+
+
         </div>
       </div>
     </div>

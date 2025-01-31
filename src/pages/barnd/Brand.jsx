@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IconButton, Tooltip } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,6 +7,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { ThemeContext } from "../../context/ContextProvider";
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
+import { getAllBrands } from "../../_api/brand";
 
 const Brand = () => {
     const context = useContext(ThemeContext)
@@ -39,7 +40,14 @@ const Brand = () => {
             setCurrentPage(page);
         }
     };
+    const fetchAllBrand=async()=>{
+       const b= await getAllBrands()
+       setData(b)
+    }
 
+    useEffect(()=>{
+        fetchAllBrand()
+    },[])
     return (
         <div className='bg-[#edeeef] h-[89vh] overflow-auto py-5'>
             <div className={`w-[97%] mb-6 mx-auto items-center justify-between`}>
@@ -63,12 +71,12 @@ const Brand = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentData.map((item) => (
+                        {currentData && currentData.map((item) => (
                             <tr key={item.id} className="hover:bg-gray-50">
                                 <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.id}</td>
-                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.name}</td>
+                                <td className="px-4 py-2 text-sm text-gray-600 border-b">{item.desc}</td>
                                 <td className="px-4 py-2 text-sm text-gray-600 border-b">
-                                    <img src={item.image} alt={item.name} className="w-10 h-10 rounded" />
+                                    <img src={item.picUrl} alt={item.name} className="w-20 h-20 rounded object-cover" />
                                 </td>
                               
                                 <td className="px-4 py-2 border-b flex justify-center gap-2 text-gray-600">
