@@ -5,12 +5,17 @@ import { ThemeContext } from "../../context/ContextProvider";
 const CreateProduct = () => {
   const [state, setState] = useState({});
   const [images, setImages] = useState([]);
+  const [isOnSale, setIsOnSale] = useState(false);
   const context = useContext(ThemeContext);
 
   const handleFileChange = (e) => {
     setImages(Array.from(e.target.files));
   };
 
+  const handleOffer = () => {
+    setIsOnSale(!isOnSale)
+  }
+  
   const __submit__ = async () => {
     const formData = new FormData();
 
@@ -25,6 +30,8 @@ const CreateProduct = () => {
     formData.append("size", JSON.stringify(state.size));
     formData.append("colour", JSON.stringify(state.colour));
     formData.append("tags", JSON.stringify(state.tags));
+    formData.append("isOnSale", String(isOnSale));
+    formData.append("salePrice", String(state.salePrice));
 
     if (images) {
       images.forEach((image) => {
@@ -48,10 +55,12 @@ const CreateProduct = () => {
     }));
   };
 
+
+
   return (
     <div className="bg-[#edeeef] h-[89vh] overflow-auto p-10 flex justify-center items-center">
       <div
-        className={`w-[35rem] shadow-lg rounded-lg ${context.colors.boxbg} p-6 mt-14`}
+        className={`w-[35rem] shadow-lg rounded-lg ${context.colors.boxbg} p-6 mt-24`}
       >
         <h5 className="text-center mb-6 font-bold text-gray-700 text-lg">
           Create New Product
@@ -115,6 +124,24 @@ const CreateProduct = () => {
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
+          {/* Offers */}
+          <div className="flex gap-4">
+            <input
+              type="checkBox"
+              name="isOnSale"
+              onChange={handleOffer}
+              placeholder="S,M,L"
+              className="w-8 border border-gray-300 rounded "
+            />
+            <input
+              type="number"
+              name="salePrice"
+              onChange={__onchange__}
+              placeholder="Add offer"
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            />
+          </div>
+
           {/* Size and Tags */}
           <div className="flex gap-4">
             <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
