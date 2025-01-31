@@ -61,7 +61,7 @@ function DashBoard() {
                 <h3 className={`text-2xl font-semibold `}>Overview</h3>
                 <div className={`flex gap-2`}>
                     {data.map((data, i) => {
-                        return <div className={`w-[25%] my-2 p-3 py-5 rounded-md ${context.colors.boxbg}`}>
+                        return <div key={i} className={`w-[25%] my-2 p-3 py-5 rounded-md ${context.colors.boxbg}`}>
                             <h3>{data.text}</h3>
                             <p className={`mt-3 text-2xl font-semibold`}>{count}</p>
                         </div>
