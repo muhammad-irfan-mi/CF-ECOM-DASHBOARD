@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createProduct } from "../../_api/products";
 import { ThemeContext } from "../../context/ContextProvider";
+import { getAllBrands } from "../../_api/brand";
+import { getAllCategorys } from "../../_api/category";
 
 const CreateProduct = () => {
   const [state, setState] = useState({});
   const [images, setImages] = useState([]);
-  const [isOnSale, setIsOnSale] = useState(false);
   const context = useContext(ThemeContext);
 
   const handleFileChange = (e) => {
@@ -24,14 +25,13 @@ const CreateProduct = () => {
     if (typeof state.tags === "string") state.tags = state.tags.split(",");
     if (typeof state.price === "string") state.price = +state.price;
 
+    console.log({state})
     formData.append("name", String(state.name));
     formData.append("price", String(state.price));
     formData.append("desc", String(state.desc));
     formData.append("size", JSON.stringify(state.size));
     formData.append("colour", JSON.stringify(state.colour));
     formData.append("tags", JSON.stringify(state.tags));
-    formData.append("isOnSale", String(isOnSale));
-    formData.append("salePrice", String(state.salePrice));
 
     if (images) {
       images.forEach((image) => {
@@ -43,12 +43,12 @@ const CreateProduct = () => {
 
     if (response) {
       alert("Product created successfully!");
-      setState({});
       setImages([]);
     }
   };
 
   const __onchange__ = (e) => {
+    console.log({ state })
     setState((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -57,6 +57,18 @@ const CreateProduct = () => {
 
 
 
+
+  const fetchAllData = async () => {
+    const b = await getAllBrands()
+    const c = await getAllCategorys()
+    setBrand(b)
+    setCategory(c)
+
+  }
+
+  useEffect(() => {
+    fetchAllData()
+  }, [])
   return (
     <div className="bg-[#edeeef] h-[89vh] overflow-auto p-10 flex justify-center items-center">
       <div
@@ -144,21 +156,20 @@ const CreateProduct = () => {
 
           {/* Size and Tags */}
           <div className="flex gap-4">
-            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+            <select
+              onChange={__onchange__}
+              name="categoryId" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">select category</option>
-              <option value="category 1">category 1</option>
-              <option value="category 2">category 2</option>
-              <option value="category 3">category 3</option>
-              <option value="category 4">category 4</option>
-              <option value="category 5">category 5</option>
+              {category && category.map((e, i) => (
+                <option key={i} value={e.id}>{e.name}</option>))}
+
             </select>
-            <select name="" id="" className="w-full border border-gray-300 rounded px-3 py-2">
+            <select
+              onChange={__onchange__}
+              name="brandId" id="" className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">Select Brand</option>
-              <option value="Brand 1">Brand 1</option>
-              <option value="Brand 2">Brand 2</option>
-              <option value="Brand 3">Brand 3</option>
-              <option value="Brand 4">Brand 4</option>
-              <option value="Brand 5">Brand 5</option>
+              {brand && brand.map((e, i) => (
+                <option key={i} value={e.id}>{e.name}</option>))}
             </select>
           </div>
 

@@ -29,7 +29,7 @@ const deleteBrand = async (id) => {
 }
 
 const getAllBrands = async () => {
-    const req = await axios.get(`/brands`)
+    const req = await axios.get(`/brand`)
     console.log({ data: req.data })
     return req.data
 
